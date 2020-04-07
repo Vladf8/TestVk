@@ -1,0 +1,41 @@
+{% extends 'bootstrap3.html' %}
+{% load bootstrap3 %}
+{% load socialaccount %}
+{% block bootstrap3_content %}
+    <div class="container" style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-md-4  hidden-xs hidden-sm">
+                <br>
+                <br>
+            </div>
+            <div class="col-xs-12 col-md-4" align="center">
+                {% if user.is_authenticated %}
+                    Добро пожаловать {{ username }}!
+                    <br>
+                    Вот твои друзья:
+                    {% for friend in user_friends %}
+                        <br>{{ friend }}
+                    {% endfor %}
+                    <form method="post" action="{% url 'account_logout' %}">
+                      {% csrf_token %}
+                      {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                      {% endif %}
+                      <button type="submit">Выйти из VK</button>
+                    </form>
+                {% else %}
+                    Вы не авторизированы.
+                    <br>
+                    <a href="https://webimtest.herokuapp.com/accounts/vk/login/?process=login&next=%2F">Войти с помощью VK</a>
+                {% endif %}
+            </div>
+            <div class="col-md-4 hidden-xs hidden-sm">
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    <span>Hello {{ username }}! Вот твои друзья: {% for user in user_friends %}{{ user }},{% endfor %}</span>
+<br><br><br>
+    <a href="https://vladtestvk.herokuapp.com/account/vk/login/?process=login&next=%2Faccounts%2Fsocial%2Fconnections%2F">Connect a Vk account</a>
