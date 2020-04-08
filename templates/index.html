@@ -10,7 +10,9 @@
             </div>
             <div class="col-xs-12 col-md-4" align="center">
                 {% if is_authenticated %}
-                    Добро пожаловать {{ user_id}}!
+                    <img src="{{ photo }}">
+                    Добро пожаловать {{ username}}!
+                    Кол-во друзей: {{ friends_count }}
 {#                    <br>#}
 {#                    Вот твои друзья:#}
 {#                    {% for friend in user_friends %}#}
