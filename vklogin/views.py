@@ -30,7 +30,7 @@ def callback(request):
         context['username']=userInfo.get('response')[0].get('first_name')+' '+userInfo.get('response')[0].get('last_name')
         context['photo']=userInfo.get('response')[0].get('photo_max')
         context['friends_count']=getUserFriends(context['user_token'])
-    return render(request,'callback.html.html',context)
+    return render(request,'callback.html',context)
 
 def enterToAccunt(request):
     auth=request.GET.get('auth')
