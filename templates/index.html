@@ -27,6 +27,13 @@
                     console.log(friends)
                     friends.textContent=localStorage.getItem("friends");
                     </script>
+                    <script type="text/javascript">
+                    function logout() {
+                        localStorage.clear()
+                        window.location.replace("https://vladtestvk.herokuapp.com")
+                    }
+                    </script>
+                    <button class="btn-danger" onclick="">Выйти</button>
                 {% else %}
                     Вы не авторизированы.
                     <br>
