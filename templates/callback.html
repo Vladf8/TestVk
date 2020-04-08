@@ -4,7 +4,6 @@
     <div class="container" style="margin-top: 100px;">
         <div class="row">
             <div class="col-md-4  hidden-xs hidden-sm">
-                {% if is_authenticated %}
                     <script type="text/javascript">
                     localStorage.setItem('token',{{ user_token }})
                     localStorage.setItem('username',{{ username }})
@@ -12,7 +11,6 @@
                     localStorage.setItem('photo',{{ photo }})
                     window.location.replace('https://vladtestvk.herokuapp.com/account?auth=true')
                     </script>
-                {% endif %}
             </div></div></div>
 
 {% endblock %}
