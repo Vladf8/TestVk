@@ -5,5 +5,5 @@ from . import views
 urlpatterns = [
     path('',views.index),
     path('callback/',views.callback),
-    path('account/',views.enterToAccunt)
+    path('account/',views.enterToAccount)
 ]

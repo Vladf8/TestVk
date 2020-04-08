@@ -32,7 +32,7 @@ def callback(request):
         context['friends_count']=getUserFriends(context['user_token'])
     return render(request,'callback.html',context)
 
-def enterToAccunt(request):
+def enterToAccount(request):
     auth=request.GET.get('auth')
     context = {"is_authenticated": False}
     if auth=='true':
