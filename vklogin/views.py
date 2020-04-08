@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from allauth.socialaccount.models import SocialAccount
 import requests
 
 def getUserFriends(token:str):
