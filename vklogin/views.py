@@ -34,9 +34,9 @@ def callback(request):
 
 def enterToAccunt(request):
     auth=request.GET.get('auth')
+    context = {"is_authenticated": False}
     if auth=='true':
-        context={"is_authenticated":True}
-        return render(request,'index.html',)
+        context["is_authenticated"]=True
+        return render(request,'index.html',context)
     else:
-        context={"is_authenticated":False}
         return render(request,'index.html',context)
