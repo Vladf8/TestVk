@@ -10,6 +10,12 @@
             <div class="col-xs-12 col-md-4" align="center">
 
                 {% if is_authenticated %}
+
+                    <img id='photo' src="">
+                    <br><br>
+                    Добро пожаловать <span id="name"></span>!
+                    Кол-во друзей: <span id="friends"></span>
+
                     <script type="text/javascript">
                     photo=document.getElementById("photo");
                     console.log(photo)
@@ -21,11 +27,6 @@
                     console.log(friends)
                     friends.textContent=localStorage.getItem("friends");
                     </script>
-                    <img id='photo' src="">
-                    <br><br>
-                    Добро пожаловать <span id="name"></span>!
-                    Кол-во друзей: <span id="friends"></span>
-
                 {% else %}
                     Вы не авторизированы.
                     <br>
