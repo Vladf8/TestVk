@@ -7,7 +7,7 @@
                 <br>
                 <br>
             </div>
-            <div class="col-xs-12 col-md-4" align="center">
+            <div class="col-xs-12 col-md-4" align="center" id="main">
 
                 {% if is_authenticated %}
 
@@ -32,7 +32,30 @@
                         localStorage.clear()
                         window.location.replace("https://vladtestvk.herokuapp.com")
                     }
+                    function search() {
+                        query=document.getElementById("query").textContent;
+                        token=localStorage.getItem('user_token')
+                        $.get(
+                            'https://api.vk.com/method/friends.search',
+                            {
+                                v:"5.52",
+                                access_token:token,
+                                q:query,
+                                fields:"nickname"
+
+                            },
+                            printResult
+                        )
+
+                    }
+                    function printResult(data) {
+                        console.log(data)
+                    }
                     </script>
+                    <br>
+                    <input type="text" id="query">
+                    <button class="btn" onclick="search()"></button>
+                    <br>
                     <button class="btn-danger" onclick="logout()">Выйти</button>
                 {% else %}
                     Вы не авторизированы.
