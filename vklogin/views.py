@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from allauth.socialaccount.models import SocialAccount
+import requests
 
 def getUserFriends(id):
     print('test')
@@ -18,3 +19,10 @@ def index(request):
         'user_friends': user_friends
     }
     return render(request, 'index.html', context)
+
+def callback(request):
+    code=request.GET.get('code')
+    resp=requests.get('https://oauth.vk.com/access_token?client_id=7396296&client_secret=hcSFV9SDvpLw19NdiwrX&redirect_uri=https://vladtestvk.herokuapp.com/callback&code={}'.format(code))
+    token=resp.json()
+    context={"user_token":token.get('access_token'),"user_id":token.get('user_id'),"is_authenticated":True}
+    return render(request,'index.html',context)
