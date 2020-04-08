@@ -1,6 +1,5 @@
 {% extends 'bootstrap3.html' %}
 {% load bootstrap3 %}
-{% load socialaccount %}
 {% block bootstrap3_content %}
     <div class="container" style="margin-top: 100px;">
         <div class="row">
@@ -9,23 +8,22 @@
                 <br>
             </div>
             <div class="col-xs-12 col-md-4" align="center">
+
                 {% if is_authenticated %}
-                    <img src="{{ photo }}">
+                    <script type="text/javascript">
+                    photo=document.getElementById('photo')
+                    photo.src=localStorage.getItem('photo')
+                    username=document.getElementById('name')
+                    username.textContent=localStorage.getItem('username')
+                    friends=document.getElementById('friends')
+                    friends.textContent=localStorage.getItem('friends')
+                    window.location.replace('https://vladtestvk.herokuapp.com/account?auth=true')
+                    </script>
+                    <img id='photo' src="">
                     <br><br>
-                    Добро пожаловать {{ username}}!
-                    Кол-во друзей: {{ friends_count }}
-{#                    <br>#}
-{#                    Вот твои друзья:#}
-{#                    {% for friend in user_friends %}#}
-{#                        <br>{{ friend }}#}
-{#                    {% endfor %}#}
-{#                    <form method="post" action="{% url 'account_logout' %}">#}
-{#                      {% csrf_token %}#}
-{#                      {% if redirect_field_value %}#}
-{#                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>#}
-{#                      {% endif %}#}
-{#                      <button type="submit">Выйти из VK</button>#}
-{#                    </form>#}
+                    Добро пожаловать <span id="name"></span>!
+                    Кол-во друзей: <span id="friends"></span>
+
                 {% else %}
                     Вы не авторизированы.
                     <br>
@@ -39,6 +37,3 @@
         </div>
     </div>
 {% endblock %}
-    <span>Hello {{ username }}! Вот твои друзья: {% for user in user_friends %}{{ user }},{% endfor %}</span>
-<br><br><br>
-    <a href=https://oauth.vk.com/authorize?client_id=7396296&display=page&redirect_uri=https://vladtestvk.herokuapp.com/callback&scope=friends&response_type=code&v=5.103>Connect a Vk account</a>
