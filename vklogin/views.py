@@ -17,7 +17,7 @@ def getUserInfo(token:str):
     return  userInfo
 
 def search(token:str,query:str):
-    resp=requests.get('https://api.vk.com/method/friends.search?v=5.52&access_token={}&q={}&fields=nickname'.format(token,query)
+    resp=requests.get('https://api.vk.com/method/friends.search?v=5.52&access_token={}&q={}&fields=nickname'.format(token,query))
     queryResult=resp.json().get('response').get('items')
 
 
