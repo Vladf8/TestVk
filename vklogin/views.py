@@ -6,7 +6,7 @@ def getUserFriends(token:str):
     resp=requests.get('https://api.vk.com/method/friends.get?v=5.52&access_token={}&count=1000000'.format(token))
     friends=resp.json()
 
-    return friends.get('count')
+    return friends.get('response').get('count')
 
 def index(request):
     if request.user.is_authenticated:
@@ -35,7 +35,7 @@ def callback(request):
     context={"user_token":token.get('access_token'),"user_id":token.get('user_id'),"is_authenticated":True}
     if context.get('user_token') != None:
         userInfo= getUserInfo(context['user_token'])
-        context['username']=userInfo.get('first_name')+' '+userInfo.get('last_name')
-        context['photo']=userInfo.get('photo_max')
+        context['username']=userInfo.get('response')[0].get('first_name')+' '+userInfo.get('response')[0].get('last_name')
+        context['photo']=userInfo.get('response')[0].get('photo_max')
         context['friends_count']=getUserFriends(context['user_token'])
     return render(request,'index.html',context)
