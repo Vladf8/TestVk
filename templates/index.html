@@ -10,7 +10,6 @@
             <div class="col-xs-12 col-md-4" align="center" id="main">
 
                 {% if is_authenticated %}
-                    {% csrf_token %}
                     <img id='photo' src="">
                     <br><br>
                     Добро пожаловать <span id="name"></span>!
@@ -41,7 +40,8 @@
                                 v:"5.52",
                                 access_token:token,
                                 q:query,
-                                fields:"nickname"
+                                fields:"nickname",
+                                Access-Control-Allow-Origin:{% csrf_token %}
 
                             },
                             printResult
