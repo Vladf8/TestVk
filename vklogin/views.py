@@ -23,7 +23,7 @@ def search(token:str,query:str):
 
 def callback(request):
     code=request.GET.get('code')
-    resp=requests.get('https://oauth.vk.com/access_token?client_id=7396296&client_secret=hcSFV9SDvpLw19NdiwrX&redirect_uri=https://vladtestvk.herokuapp.com/callback&code={}'.format(code))
+    resp=requests.get('https://oauth.vk.com/access_token?client_id=7396296&client_secret=hcSFV9SDvpLw19NdiwrX&redirect_uri=https://vktestbranch.herokuapp.com/callback&code={}'.format(code))
     token=resp.json()
     context={"user_token":token.get('access_token'),"user_id":token.get('user_id')}
     if context.get('user_token') != None:
