@@ -7,10 +7,9 @@
                 <br>
                 <br>
             </div>
-            <div class="col-xs-12 col-md-4" align="center">
+            <div class="col-xs-12 col-md-4" align="center" id="main">
 
                 {% if is_authenticated %}
-
                     <img id='photo' src="">
                     <br><br>
                     Добро пожаловать <span id="name"></span>!
@@ -18,21 +17,33 @@
 
                     <script type="text/javascript">
                     photo=document.getElementById("photo");
-                    console.log(photo)
                     photo.src=localStorage.getItem("photo");
                     username=document.getElementById("name");
-                    console.log(name)
                     username.textContent=localStorage.getItem("username");
                     friends=document.getElementById("friends");
-                    console.log(friends)
                     friends.textContent=localStorage.getItem("friends");
                     </script>
                     <script type="text/javascript">
                     function logout() {
-                        localStorage.clear()
-                        window.location.replace("https://vladtestvk.herokuapp.com")
+                        localStorage.clear();
+                        window.location.replace("https://vladtestvk.herokuapp.com");
                     }
+                    function search() {
+                        userToken=localStorage.getItem('token');
+                        query=document.getElementById("query").value;
+                        window.location.replace("https://vladtestvk.herokuapp.com/account/?auth=true&token="+userToken+"&q="+query);
+
+                    }
+
                     </script>
+                    <br>
+                    <input type="text" id="query">
+                    <button class="btn" onclick="search()">Найти</button>
+                    {% for friend in search %}
+                        <br>{{ friend.first_name }} {{ friend.last_name }}
+                    {% endfor %}
+                    <br>
+                    <br>
                     <button class="btn-danger" onclick="logout()">Выйти</button>
                 {% else %}
                     Вы не авторизированы.
