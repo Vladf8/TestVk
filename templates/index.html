@@ -34,7 +34,6 @@
                     function search() {
                         userToken=localStorage.getItem('token');
                         query=document.getElementById("query").value;
-                        {#$.get("https://vktestbranch.herokuapp.com/account",{auth:"true",token:userToken,q:query});#}
                         window.location.replace("https://vktestbranch.herokuapp.com/account/?auth=true&token="+userToken+"&q="+query)
 
                     }
@@ -44,7 +43,7 @@
                     <input type="text" id="query">
                     <button class="btn" onclick="search()">Найти</button>
                     {% for friend in search %}
-                        <br>{{ friend }}
+                        <br>{{ friend.first_name }} {{ friend.last_name }}
                     {% endfor %}
                     <br>
                     <button class="btn-danger" onclick="logout()">Выйти</button>
