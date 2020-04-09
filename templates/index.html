@@ -34,8 +34,10 @@
                     function search() {
                         userToken=localStorage.getItem('token');
                         query=document.getElementById("query").textContent.toString();
-                        $.get("https://vktestbranch.herokuapp.com",{auth:"true",token:userToken,q:query});
+                        $.get("https://vktestbranch.herokuapp.com/account",{auth:"true",token:userToken,q:query});
+
                     }
+
                     </script>
                     <br>
                     <input type="text" id="query">
