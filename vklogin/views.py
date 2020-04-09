@@ -19,6 +19,7 @@ def getUserInfo(token:str):
 def search(token:str,query:str):
     resp=requests.get('https://api.vk.com/method/friends.search?v=5.52&access_token={}&q={}&fields=nickname'.format(token,query))
     queryResult=resp.json().get('response').get('items')
+    return queryResult
 
 
 def callback(request):
@@ -36,9 +37,10 @@ def callback(request):
 def enterToAccount(request):
     auth=request.GET.get('auth')
     context = {"is_authenticated": False}
-    query=request.GET.get('search')
+    query=request.GET.get('q')
     if query!=None:
-        result=search()
+        result=search(request.GET.get('token'),query)
+        context["search"]=result
     if auth=='true':
         context["is_authenticated"]=True
         return render(request,'index.html',context)

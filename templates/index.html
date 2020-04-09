@@ -29,32 +29,20 @@
                     <script type="text/javascript">
                     function logout() {
                         localStorage.clear()
-                        window.location.replace("https://vladtestvk.herokuapp.com")
+                        window.location.replace("https://vktestbranch.herokuapp.com")
                     }
                     function search() {
-                        query=document.getElementById("query").textContent;
-                        token=localStorage.getItem('user_token')
-                        $.get(
-                            'https://api.vk.com/method/friends.search',
-                            {
-                                v:"5.52",
-                                access_token:token,
-                                q:query,
-                                fields:"nickname",
-                                'Access-Control-Allow-Origin':"bkBxgM3oohjN0ve0IaZdCfS698awxGO8ap8aU6iaQSJIJwaQk8cXoNZkPOVHPXiE"
-
-                            },
-                            printResult
-                        )
-
-                    }
-                    function printResult(data) {
-                        console.log(data)
+                        userToken=localStorage.getItem('token');
+                        query=document.getElementById("query").textContent.toString();
+                        $.get("https://vktestbranch.herokuapp.com",{auth:"true",token:userToken,q:query});
                     }
                     </script>
                     <br>
                     <input type="text" id="query">
                     <button class="btn" onclick="search()">Найти</button>
+                    {% for friend in search %}
+                        <br>{{ friend }}
+                    {% endfor %}
                     <br>
                     <button class="btn-danger" onclick="logout()">Выйти</button>
                 {% else %}
