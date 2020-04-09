@@ -17,24 +17,21 @@
 
                     <script type="text/javascript">
                     photo=document.getElementById("photo");
-                    console.log(photo)
                     photo.src=localStorage.getItem("photo");
                     username=document.getElementById("name");
-                    console.log(name)
                     username.textContent=localStorage.getItem("username");
                     friends=document.getElementById("friends");
-                    console.log(friends)
                     friends.textContent=localStorage.getItem("friends");
                     </script>
                     <script type="text/javascript">
                     function logout() {
-                        localStorage.clear()
-                        window.location.replace("https://vktestbranch.herokuapp.com")
+                        localStorage.clear();
+                        window.location.replace("https://vktestbranch.herokuapp.com");
                     }
                     function search() {
                         userToken=localStorage.getItem('token');
                         query=document.getElementById("query").value;
-                        window.location.replace("https://vktestbranch.herokuapp.com/account/?auth=true&token="+userToken+"&q="+query)
+                        window.location.replace("https://vktestbranch.herokuapp.com/account/?auth=true&token="+userToken+"&q="+query);
 
                     }
 
@@ -45,6 +42,7 @@
                     {% for friend in search %}
                         <br>{{ friend.first_name }} {{ friend.last_name }}
                     {% endfor %}
+                    <br>
                     <br>
                     <button class="btn-danger" onclick="logout()">Выйти</button>
                 {% else %}
