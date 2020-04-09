@@ -34,7 +34,8 @@
                     function search() {
                         userToken=localStorage.getItem('token');
                         query=document.getElementById("query").value;
-                        $.get("https://vktestbranch.herokuapp.com/account",{auth:"true",token:userToken,q:query});
+                        {#$.get("https://vktestbranch.herokuapp.com/account",{auth:"true",token:userToken,q:query});#}
+                        window.location.replace("https://vktestbranch.herokuapp.com/account/?auth=true&token="+userToken+"&q="+query)
 
                     }
 
